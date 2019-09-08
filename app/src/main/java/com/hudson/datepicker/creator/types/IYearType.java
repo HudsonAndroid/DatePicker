@@ -7,6 +7,6 @@ import com.hudson.datepicker.component.IDatePicker;
 /**
  * Created by Hudson on 2019/9/8.
  */
-public interface IDatePickerType {
+public interface IYearType {
     IDatePicker initDatePicker(LinearLayout parent,int startYear,int endYear);
 }

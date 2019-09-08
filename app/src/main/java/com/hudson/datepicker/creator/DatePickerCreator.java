@@ -5,7 +5,9 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.hudson.datepicker.component.IDatePicker;
-import com.hudson.datepicker.creator.types.DatePickerType;
+import com.hudson.datepicker.creator.types.HourType;
+import com.hudson.datepicker.creator.types.MonthType;
+import com.hudson.datepicker.creator.types.YearType;
 import com.hudson.wheelview.adapter.WheelViewConfig;
 
 /**
@@ -26,10 +28,22 @@ public class DatePickerCreator {
         sConfig = config;
     }
 
-    public static IDatePicker createDatePicker(DatePickerType type, LinearLayout parent,
-                                               int startYear, int endYear){
+    public static IDatePicker createYearDatePicker(YearType type, LinearLayout parent,
+                                                   int startYear, int endYear){
         parent.setOrientation(LinearLayout.HORIZONTAL);
         parent.setGravity(Gravity.CENTER_VERTICAL);
         return type.initDatePicker(parent,startYear,endYear);
+    }
+
+    public static IDatePicker createMonthDatePicker(MonthType type,LinearLayout parent,int targetYear){
+        parent.setOrientation(LinearLayout.HORIZONTAL);
+        parent.setGravity(Gravity.CENTER_VERTICAL);
+        return type.initDatePicker(parent,targetYear);
+    }
+
+    public static IDatePicker createHourDatePicker(HourType type,LinearLayout parent){
+        parent.setOrientation(LinearLayout.HORIZONTAL);
+        parent.setGravity(Gravity.CENTER_VERTICAL);
+        return type.initDatePicker(parent);
     }
 }

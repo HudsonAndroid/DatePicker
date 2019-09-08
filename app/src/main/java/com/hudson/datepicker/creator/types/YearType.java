@@ -15,10 +15,8 @@ import com.hudson.datepicker.decorator.MonthWheelView;
 /**
  * Created by Hudson on 2019/9/8.
  */
-public enum DatePickerType implements IDatePickerType {
-
+public enum YearType implements IYearType {
     TypeYearOnly{
-
         @Override
         public IDatePicker initDatePicker(LinearLayout container,int startYear,int endYear) {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0,

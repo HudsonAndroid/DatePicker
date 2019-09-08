@@ -15,7 +15,7 @@ import com.hudson.wheelview.listener.OnSelectChangedListener;
 public class MonthWheelView extends AbsDecorator {
     private static final int MIN_MONTH = 1;
     private static final int MAX_MONTH = 12;
-    private int mJanDays = -1;
+    private int mTargetYear = -1;
     private YearWheelView mYearWheelView;
 
     public MonthWheelView(Context context,@Nullable IDatePicker concreteComponent) {
@@ -33,9 +33,9 @@ public class MonthWheelView extends AbsDecorator {
         return MAX_MONTH;
     }
 
-    public void setJanDays(int janDays) {
-        if(janDays == 28 || janDays == 29){
-            mJanDays = janDays;
+    public void setTargetYear(int year){
+        if(year > 0){
+            mTargetYear = year;
         }
     }
 
@@ -82,8 +82,8 @@ public class MonthWheelView extends AbsDecorator {
                 }
                 return 30;
             case 2:
-                if(mJanDays != -1){
-                    return mJanDays;
+                if(mTargetYear != -1){
+                    return getDaysByYear(mTargetYear);
                 }else{
                     if(mYearWheelView != null){
                         mYearWheelView.setOnSelectChangedListener(new OnSelectChangedListener() {
@@ -95,10 +95,7 @@ public class MonthWheelView extends AbsDecorator {
                                 }
                             }
                         });
-                        int year = mYearWheelView.getCurrentSelect();
-                        if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
-                            return 29;
-                        }
+                        return getDaysByYear(mYearWheelView.getCurrentSelect());
                     }else{
                         Log.w("MonthWheelView","the target year is not specific," +
                                 "days of February use 28 for default.");
@@ -108,6 +105,13 @@ public class MonthWheelView extends AbsDecorator {
             default:
                 return 0;
         }
+    }
+
+    private int getDaysByYear(int year){
+        if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+            return 29;
+        }
+        return 28;
     }
 
     private OnJanMonthWithYearChangeListener mJanYearChangeListener;
