@@ -8,6 +8,11 @@ import com.hudson.datepicker.entity.Date;
 
 
 /**
+ * Who will be decorated by other {@link IDatePicker}.
+ *
+ * It is different with other components,it cannot decorate others.
+ *
+ * 它不同于其他的，它已经是最底层的了，没法在包装别的了。
  * Created by Hudson on 2019/9/8.
  */
 public class YearWheelView extends AbsWheelView implements IDatePicker {

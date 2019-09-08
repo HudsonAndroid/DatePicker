@@ -1,6 +1,7 @@
 package com.hudson.datepicker.decorator;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.hudson.datepicker.ConcreteComponent.YearWheelView;
@@ -17,7 +18,7 @@ public class MonthWheelView extends AbsDecorator {
     private int mJanDays = -1;
     private YearWheelView mYearWheelView;
 
-    public MonthWheelView(Context context, IDatePicker concreteComponent) {
+    public MonthWheelView(Context context,@Nullable IDatePicker concreteComponent) {
         super(context, concreteComponent);
         mYearWheelView = ((YearWheelView) concreteComponent);
     }
@@ -44,8 +45,7 @@ public class MonthWheelView extends AbsDecorator {
     }
 
     @Override
-    public Date getDate() {
-        Date date = mConcreteComponent.getDate();
+    protected Date getMyselfDate(Date date) {
         date.setMonth(getCurrentSelect());
         return date;
     }
@@ -69,30 +69,39 @@ public class MonthWheelView extends AbsDecorator {
             case 8:
             case 10:
             case 12:
-                mYearWheelView.setOnSelectChangedListener(null);
+                if(mYearWheelView != null){
+                    mYearWheelView.setOnSelectChangedListener(null);
+                }
                 return 31;
             case 4:
             case 6:
             case 9:
             case 11:
-                mYearWheelView.setOnSelectChangedListener(null);
+                if(mYearWheelView != null){
+                    mYearWheelView.setOnSelectChangedListener(null);
+                }
                 return 30;
             case 2:
                 if(mJanDays != -1){
                     return mJanDays;
                 }else{
-                    mYearWheelView.setOnSelectChangedListener(new OnSelectChangedListener() {
-                        @Override
-                        public void onSelectChanged(int selection) {
-                            if(mJanYearChangeListener != null){
-                                mJanYearChangeListener.onJanMonthYearChange(
-                                        mYearWheelView.getCurrentSelect());
+                    if(mYearWheelView != null){
+                        mYearWheelView.setOnSelectChangedListener(new OnSelectChangedListener() {
+                            @Override
+                            public void onSelectChanged(int selection) {
+                                if(mJanYearChangeListener != null){
+                                    mJanYearChangeListener.onJanMonthYearChange(
+                                            mYearWheelView.getCurrentSelect());
+                                }
                             }
+                        });
+                        int year = mYearWheelView.getCurrentSelect();
+                        if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+                            return 29;
                         }
-                    });
-                    int year = mYearWheelView.getCurrentSelect();
-                    if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
-                        return 29;
+                    }else{
+                        Log.w("MonthWheelView","the target year is not specific," +
+                                "days of February use 28 for default.");
                     }
                     return 28;
                 }

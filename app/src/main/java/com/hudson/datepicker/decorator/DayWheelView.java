@@ -1,6 +1,7 @@
 package com.hudson.datepicker.decorator;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.hudson.datepicker.component.IDatePicker;
 import com.hudson.datepicker.entity.Date;
@@ -14,7 +15,7 @@ public class DayWheelView extends AbsDecorator {
     private static final int MIN_DAY = 1;
     private MonthWheelView mMonthWheelView;
 
-    public DayWheelView(Context context, IDatePicker concreteComponent) {
+    public DayWheelView(Context context,@Nullable IDatePicker concreteComponent) {
         super(context, concreteComponent);
         if(concreteComponent instanceof MonthWheelView){
             mMonthWheelView = (MonthWheelView) concreteComponent;
@@ -40,8 +41,7 @@ public class DayWheelView extends AbsDecorator {
     }
 
     @Override
-    public Date getDate() {
-        Date date = mConcreteComponent.getDate();
+    protected Date getMyselfDate(Date date) {
         date.setDay(getCurrentSelect());
         return date;
     }

@@ -1,6 +1,7 @@
 package com.hudson.datepicker.decorator;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.hudson.datepicker.component.IDatePicker;
 import com.hudson.datepicker.entity.Date;
@@ -12,7 +13,7 @@ public class HourWheelView extends AbsDecorator {
     private static final int MAX_HOUR = 23;
     private static final int MIN_HOUR = 0;
 
-    public HourWheelView(Context context, IDatePicker concreteComponent) {
+    public HourWheelView(Context context,@Nullable IDatePicker concreteComponent) {
         super(context, concreteComponent);
     }
 
@@ -22,8 +23,7 @@ public class HourWheelView extends AbsDecorator {
     }
 
     @Override
-    public Date getDate() {
-        Date date = mConcreteComponent.getDate();
+    protected Date getMyselfDate(Date date) {
         date.setHour(getCurrentSelect());
         return date;
     }
