@@ -34,6 +34,7 @@
 #### 3.创建时类型日期选择器            
       //to create hour type DatePicker
       DatePickerCreator.createHourDatePicker(HourType type,LinearLayout parent);
+##### 参数说明：同上，略
 ### 二 其他方法说明
 #### 1.配置滚轮的属性
       DatePickerCreator.setConfig(@NonNull WheelViewConfig config);
@@ -48,6 +49,5 @@
       //mDatePicker is an instance of IDatePicker
       Date date = mDatePicker.getDate();
       
-##### 参数说明：同上，略
 # See More
 ##### 本DatePicker依赖<a href="https://github.com/HudsonAndroid/WheelView">WheelView<a/>组件，相关逻辑请跳转参考。
