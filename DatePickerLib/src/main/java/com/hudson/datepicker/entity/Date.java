@@ -60,4 +60,15 @@ public class Date {
     public void setMinute(int minute) {
         mMinute = minute;
     }
+
+    @Override
+    public String toString() {
+        return "Date{" +
+                "mYear=" + mYear +
+                ", mMonth=" + mMonth +
+                ", mDay=" + mDay +
+                ", mHour=" + mHour +
+                ", mMinute=" + mMinute +
+                '}';
+    }
 }
