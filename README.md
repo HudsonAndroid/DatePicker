@@ -16,7 +16,12 @@
 #### 其他不常用类型没有写，如果需要可以快速拓展。
 
 # Usage
-### 一 基础构建
+### 一 依赖
+#### 1.在项目的根目录的build.gradle添加repositories
+      maven { url 'https://jitpack.io' }
+#### 2.在需要依赖DatePicker的module中的build.gradle的dependencies中添加依赖
+      implementation 'com.github.HudsonAndroid:DatePicker:1.0.0'
+### 二 基础构建
 #### 1.创建年类型日期选择器
      //to create year type DatePicker
       DatePickerCreator.createYearDatePicker(YearType type, LinearLayout parent,int startYear, int endYear);
@@ -35,7 +40,7 @@
       //to create hour type DatePicker
       DatePickerCreator.createHourDatePicker(HourType type,LinearLayout parent);
 ##### 参数说明：同上，略
-### 二 其他方法说明
+### 三 其他方法说明
 #### 1.配置滚轮的属性
       DatePickerCreator.setConfig(@NonNull WheelViewConfig config);
  
