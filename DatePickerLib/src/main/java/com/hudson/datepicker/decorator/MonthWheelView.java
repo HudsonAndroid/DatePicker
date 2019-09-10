@@ -20,7 +20,9 @@ public class MonthWheelView extends AbsDecorator {
 
     public MonthWheelView(Context context,@Nullable IDatePicker concreteComponent) {
         super(context, concreteComponent);
-        mYearWheelView = ((YearWheelView) concreteComponent);
+        if(concreteComponent instanceof YearWheelView){
+            mYearWheelView = ((YearWheelView) concreteComponent);
+        }
     }
 
     @Override
