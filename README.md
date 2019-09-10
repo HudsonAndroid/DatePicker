@@ -21,8 +21,8 @@
       maven { url 'https://jitpack.io' }
 #### 2.在需要依赖DatePicker的module中的build.gradle的dependencies中添加依赖
       implementation 'com.github.HudsonAndroid:DatePicker:1.0.0'
-      //DatePicker 依赖 WheelView
-      implementation 'com.github.HudsonAndroid:WheelView:1.0.1'
+      //DatePicker 依赖 WheelView （如果studio提示找不到WheelView，把下面的依赖也加上）
+      //implementation 'com.github.HudsonAndroid:WheelView:1.0.1'
 ### 二 基础构建
 #### 1.创建年类型日期选择器
      //to create year type DatePicker
