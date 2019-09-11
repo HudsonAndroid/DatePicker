@@ -93,6 +93,6 @@
  
       （1）你需要使用AbsWheelView来承载创建的DatePicker WheelView,这样才能通过addView方法加入到ViewGroup中
       （2）YearWheelView这里没有提供装饰其他滚轮的功能，因为它不应该是装饰其他滚轮
-      （3）在使用YearWheelView的时候，你应该通过AbsWheelView的setRange(int min,int max)来设置选择的范围，否则该滚轮无法正常使用；在使用MonthWheelView的时候，你应该通过MonthWheelView的setTargetYear(int year)来设置月份选择器所属的年份，目的是如果MonthWheelView有被DayWheelView包裹的时候，需要考虑到二月份的平闰年的问题。
+      （3）在使用YearWheelView的时候，你应该通过AbsWheelView的setRange(int min,int max)来设置选择的范围，否则该滚轮无法正常使用；在使用MonthWheelView的时候，你应该通过MonthWheelView的setTargetYear(int year)来设置月份选择器所属的年份（当然，如果MoonthWheelView有包裹YearWheelView的话，可以不用设置，内部有处理相关逻辑，就像上面代码那样。），目的是如果MonthWheelView有被DayWheelView包裹的时候，需要考虑到二月份的平闰年的问题。
 # See More
 ##### 本DatePicker依赖<a href="https://github.com/HudsonAndroid/WheelView">WheelView<a/>组件，相关逻辑请跳转参考。
